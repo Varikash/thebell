@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { HomePage } from './home/home.model';
+import { HomeLayout } from './features/home/home.model';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -14,9 +14,9 @@ describe('App', () => {
 
   it('renders home lines with widgets by type', async () => {
     const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
+    TestBed.tick();
 
-    const page: HomePage = {
+    const layout: HomeLayout = {
       lines: [
         {
           id: 'l1',
@@ -32,12 +32,26 @@ describe('App', () => {
         },
       ],
     };
-    TestBed.inject(HttpTestingController).expectOne('api/home.json').flush(page);
+    TestBed.inject(HttpTestingController).expectOne('api/home.json').flush(layout);
     await fixture.whenStable();
 
     const el = fixture.nativeElement as HTMLElement;
     expect(el.querySelectorAll('.line.basis-50')).toHaveLength(1);
     expect(el.querySelector('tb-news-widget')?.textContent).toContain('Новость');
     expect(el.querySelector('tb-block-placeholder')).not.toBeNull();
+  });
+
+  it('shows an error when the layout fails to load', async () => {
+    const fixture = TestBed.createComponent(App);
+    TestBed.tick();
+
+    TestBed.inject(HttpTestingController)
+      .expectOne('api/home.json')
+      .flush('fail', { status: 500, statusText: 'Server Error' });
+    await fixture.whenStable();
+
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain(
+      'Не удалось загрузить главную',
+    );
   });
 });

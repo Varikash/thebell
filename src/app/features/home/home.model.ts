@@ -1,7 +1,7 @@
 /** Ширина виджета в линии в процентах, как классы basis-* на thebell.io. */
 export type LineBasis = 25 | 33 | 50 | 100;
 
-export interface NewsWidget {
+export interface NewsWidgetConfig {
   id: string;
   type: 'news';
   title: string;
@@ -9,7 +9,7 @@ export interface NewsWidget {
   url: string;
 }
 
-export interface ArticleWidget {
+export interface ArticleWidgetConfig {
   id: string;
   type: 'article';
   rubric: string;
@@ -19,7 +19,7 @@ export interface ArticleWidget {
   url: string;
 }
 
-export interface ProductShowcaseWidget {
+export interface ProductShowcaseConfig {
   id: string;
   type: 'product-showcase';
   config: {
@@ -29,7 +29,7 @@ export interface ProductShowcaseWidget {
   };
 }
 
-export interface WebinarsWidget {
+export interface WebinarsConfig {
   id: string;
   type: 'webinars';
   config: {
@@ -38,14 +38,16 @@ export interface WebinarsWidget {
   };
 }
 
-export type HomeWidget = NewsWidget | ArticleWidget | ProductShowcaseWidget | WebinarsWidget;
+export type HomeWidgetConfig =
+  NewsWidgetConfig | ArticleWidgetConfig | ProductShowcaseConfig | WebinarsConfig;
 
 export interface HomeLine {
   id: string;
   basis: LineBasis;
-  widgets: HomeWidget[];
+  widgets: HomeWidgetConfig[];
 }
 
-export interface HomePage {
+/** Раскладка главной из конструктора: линии с виджетами. */
+export interface HomeLayout {
   lines: HomeLine[];
 }
