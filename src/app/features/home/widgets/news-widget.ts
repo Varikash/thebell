@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { NewsWidget } from '../home.model';
+import { NewsWidgetConfig } from '../home.model';
 
 @Component({
   selector: 'tb-news-widget',
@@ -40,6 +40,6 @@ import { NewsWidget } from '../home.model';
     }
   `,
 })
-export class NewsWidgetComponent {
-  readonly widget = input.required<NewsWidget>();
+export class NewsWidget {
+  readonly widget = input.required<NewsWidgetConfig>();
 }

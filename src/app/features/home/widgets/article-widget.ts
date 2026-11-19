@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ArticleWidget } from '../home.model';
+import { ArticleWidgetConfig } from '../home.model';
 
 @Component({
   selector: 'tb-article-widget',
@@ -77,6 +77,6 @@ import { ArticleWidget } from '../home.model';
     }
   `,
 })
-export class ArticleWidgetComponent {
-  readonly widget = input.required<ArticleWidget>();
+export class ArticleWidget {
+  readonly widget = input.required<ArticleWidgetConfig>();
 }
