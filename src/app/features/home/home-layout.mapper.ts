@@ -1,6 +1,6 @@
-import { HOME_BLOCKS } from '../../features/home/home-blocks.config';
-import { HomeLayout, HomeLine, HomeWidgetConfig, LineBasis } from '../../features/home/home.model';
-import { ApiLayoutTheme, ApiPost } from './thebell-api.model';
+import { ApiLayoutTheme, ApiPost } from '../../core/api/thebell-api.model';
+import { HOME_BLOCKS } from './home-blocks.config';
+import { HomeLayout, HomeLine, HomeWidgetConfig, LineBasis } from './home.model';
 
 const SITE_URL = 'https://thebell.io';
 
@@ -72,8 +72,11 @@ function toWidget(post: ApiPost, slotId: string, basis: LineBasis): HomeWidgetCo
   };
 }
 
-/** Основная картинка поста: роль 2, иначе 8, иначе любая. */
-function pickImage(post: ApiPost): string {
+/**
+ * Основная картинка поста: роль 2, иначе 8. Остальные роли (7, 17) — соцкартинки
+ * с логотипом и заголовком, их не берём: карточка останется без фото.
+ */
+function pickImage(post: ApiPost): string | undefined {
   const byRole = (role: number) => post.assets.find((a) => a.role === role)?.src;
-  return byRole(2) ?? byRole(8) ?? post.assets[0]?.src ?? '';
+  return byRole(2) ?? byRole(8);
 }

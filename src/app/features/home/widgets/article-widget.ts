@@ -6,7 +6,9 @@ import { ArticleWidgetConfig } from '../home.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a class="card" [href]="widget().url" target="_blank" rel="noopener">
-      <img class="bg" [src]="widget().image" alt="" loading="lazy" />
+      @if (widget().image; as image) {
+        <img class="bg" [src]="image" alt="" loading="lazy" />
+      }
       <span class="tb-chip">{{ widget().rubric }}</span>
       <span class="bottom">
         <span class="title">{{ widget().title }}</span>
