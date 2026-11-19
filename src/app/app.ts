@@ -1,11 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { HomePageComponent } from './home/home-page';
+import { SiteHeader } from './layout/site-header';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SiteHeader, HomePageComponent],
+  template: `
+    <tb-site-header />
+    <tb-home-page />
+  `,
 })
-export class App {
-  protected readonly title = signal('thebell');
-}
+export class App {}
