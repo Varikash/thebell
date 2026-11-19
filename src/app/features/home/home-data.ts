@@ -1,9 +1,9 @@
 import { httpResource } from '@angular/common/http';
 import { computed, Injectable } from '@angular/core';
-import { toHomeLayout } from '../../core/api/home-layout.mapper';
 import { LAYOUT_QUERY, POSTS_QUERY } from '../../core/api/home.queries';
 import { graphqlRequest, readGraphqlData } from '../../core/api/thebell-api';
 import { LayoutResponse, PostsResponse } from '../../core/api/thebell-api.model';
+import { toHomeLayout } from './home-layout.mapper';
 
 /**
  * Живая главная thebell.io: сначала раскладка из конструктора,
@@ -13,19 +13,27 @@ import { LayoutResponse, PostsResponse } from '../../core/api/thebell-api.model'
 export class HomeData {
   private readonly theme = httpResource(
     () => graphqlRequest(LAYOUT_QUERY, { routeSlug: 'main', ignoreCache: false }),
-    { parse: (raw) => readGraphqlData<LayoutResponse>(raw).getLayoutThemesByRoute[0] },
+    {
+      parse: (raw) => {
+        const theme = readGraphqlData<LayoutResponse>(raw).getLayoutThemesByRoute[0];
+        if (!theme) throw new Error('В API нет раскладки главной');
+        return theme;
+      },
+    },
   );
 
-  private readonly slotCount = computed(() =>
+  /** Сколько постов нужно: все слоты раскладки, кроме того, что занимает наша витрина. */
+  private readonly postCount = computed(() =>
     this.theme.hasValue()
-      ? this.theme.value().items.reduce((sum, i) => sum + (i.layoutItem?.widgets.length ?? 0), 0)
+      ? this.theme.value().items.reduce((sum, i) => sum + (i.layoutItem?.widgets.length ?? 0), 0) -
+        1
       : 0,
   );
 
   private readonly posts = httpResource(
     () => {
-      const limit = this.slotCount();
-      if (!limit) return undefined;
+      const limit = this.postCount();
+      if (limit <= 0) return undefined;
       return graphqlRequest(POSTS_QUERY, {
         input: {
           routeSlug: 'main',

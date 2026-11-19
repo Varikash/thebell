@@ -15,7 +15,7 @@ export interface ArticleWidgetConfig {
   rubric: string;
   title: string;
   meta?: string;
-  image: string;
+  image?: string;
   url: string;
 }
 
