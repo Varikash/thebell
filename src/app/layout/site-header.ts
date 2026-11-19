@@ -20,7 +20,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <button class="icon user" type="button" aria-label="Войти">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
             <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
-            <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <path
+              d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
           </svg>
         </button>
       </div>
@@ -108,5 +113,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
 })
 export class SiteHeader {
-  protected readonly nav = ['Главное', 'Новости', 'Экономика', 'Технологии', 'Бизнес', 'Инвестиции'];
+  protected readonly nav = [
+    'Главное',
+    'Новости',
+    'Экономика',
+    'Технологии',
+    'Бизнес',
+    'Инвестиции',
+  ];
 }

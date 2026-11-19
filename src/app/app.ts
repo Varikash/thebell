@@ -3,7 +3,7 @@ import { HomePageComponent } from './home/home-page';
 import { SiteHeader } from './layout/site-header';
 
 @Component({
-  selector: 'app-root',
+  selector: 'tb-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SiteHeader, HomePageComponent],
   template: `
