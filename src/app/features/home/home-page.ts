@@ -13,10 +13,10 @@ import { NewsWidget } from './widgets/news-widget';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NewsWidget, ArticleWidget, BlockPlaceholder],
   template: `
-    @let layout = homeData.layout;
+    @let layout = homeData.layout();
     <main class="tb-container lines">
-      @if (layout.hasValue()) {
-        @for (line of layout.value().lines; track line.id) {
+      @if (layout) {
+        @for (line of layout.lines; track line.id) {
           <section [class]="'line basis-' + line.basis">
             @for (widget of line.widgets; track widget.id) {
               <div class="line-widget">
@@ -38,8 +38,10 @@ import { NewsWidget } from './widgets/news-widget';
             }
           </section>
         }
-      } @else if (layout.error()) {
-        <p class="error">Не удалось загрузить главную. Обновите страницу.</p>
+      } @else if (homeData.error()) {
+        <p class="status">Не удалось загрузить главную. Обновите страницу.</p>
+      } @else {
+        <p class="status">Загружаем главную…</p>
       }
     </main>
   `,
@@ -69,7 +71,7 @@ import { NewsWidget } from './widgets/news-widget';
     .line-widget {
       min-width: 0;
     }
-    .error {
+    .status {
       padding: 40px 0;
       color: var(--tb-grey-text);
       text-align: center;
