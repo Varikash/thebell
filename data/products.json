@@ -1,0 +1,82 @@
+{
+  "_source": "thebell.io/paywall, thebell.io/invest, subscription.thebell.io/tech, subscription.thebell.io/unlimited — собрано 2026-11-19",
+  "products": [
+    {
+      "id": "news",
+      "name": "Новости и аналитика",
+      "tariffName": "Основной",
+      "tagline": "Рассылки «Утро», «Вечер» и «Итоги недели»",
+      "description": "Из всего потока новостей отбираем только по-настоящему важные события и объясняем «что вам с этого».",
+      "features": ["Утро — по будням", "Вечер — по будням", "Итоги недели — по пятницам", "Материалы на сайте"],
+      "landingUrl": "https://thebell.io/paywall",
+      "trial": null,
+      "plans": {
+        "USD": [
+          { "id": "news-month", "period": "month", "price": 9.8 },
+          { "id": "news-halfyear", "period": "halfyear", "price": 58.8 },
+          { "id": "news-year", "period": "year", "price": 107 }
+        ],
+        "RUB": [
+          { "id": "news-halfyear", "period": "halfyear", "price": 5900 },
+          { "id": "news-year", "period": "year", "price": 11800 }
+        ]
+      }
+    },
+    {
+      "id": "invest",
+      "name": "The Bell.Invest",
+      "tagline": "Фондовый рынок глазами долгосрочного инвестора",
+      "description": "Разбор главных тем для инвесторов, большие инвестидеи и перспективы самых интересных компаний, эксклюзивная аналитика.",
+      "features": ["Все новые материалы и рассылки", "Полный архив материалов", "Неограниченный доступ к вебинарам", "Закрытый Telegram-канал"],
+      "landingUrl": "https://thebell.io/invest",
+      "trial": { "price": 1, "currency": "USD", "period": "month", "note": "4 рассылки, без вебинаров и архива; далее $18,90/мес" },
+      "plans": {
+        "USD": [
+          { "id": "invest-month", "period": "month", "price": 18.9 },
+          { "id": "invest-halfyear", "period": "halfyear", "price": 90 },
+          { "id": "invest-year", "period": "year", "price": 180 }
+        ],
+        "RUB": [
+          { "id": "invest-year", "period": "year", "price": 15200 }
+        ]
+      }
+    },
+    {
+      "id": "tech",
+      "name": "The Bell.Tech",
+      "tagline": "О технологиях и IT-компаниях в мире и в России",
+      "description": "Рассылка и вебинары о самом главном — о технологиях. Одно письмо в неделю, по выходным.",
+      "features": ["Еженедельная рассылка", "Архив из 400+ материалов", "Все закрытые вебинары The Bell.Tech и их записи"],
+      "landingUrl": "https://subscription.thebell.io/tech",
+      "trial": { "price": 1, "currency": "USD", "period": "month", "note": "Только для новых пользователей; далее $14,9/мес" },
+      "plans": {
+        "USD": [
+          { "id": "tech-month", "period": "month", "price": 14.9 },
+          { "id": "tech-year", "period": "year", "price": 149, "oldPrice": 178.8, "perMonth": 12.4 }
+        ],
+        "RUB": [
+          { "id": "tech-year", "period": "year", "price": 12800, "oldPrice": 15800, "perMonth": 1067 }
+        ]
+      }
+    },
+    {
+      "id": "unlimited",
+      "name": "The Bell.Unlimited",
+      "tagline": "Весь контент The Bell без ограничений",
+      "description": "Пять рассылок, эксклюзивные вебинары, весь контент на сайте.",
+      "features": ["Все рассылки (новостные, Invest, Tech)", "Все вебинары", "Все материалы на сайте", "Закрытый Telegram-канал"],
+      "landingUrl": "https://subscription.thebell.io/unlimited",
+      "trial": null,
+      "plans": {
+        "USD": [
+          { "id": "unlimited-month", "period": "month", "price": 39, "saving": "Выгода $8 в месяц" },
+          { "id": "unlimited-halfyear", "period": "halfyear", "price": 219, "saving": "Выгода $38 за полгода" },
+          { "id": "unlimited-year", "period": "year", "price": 399, "saving": "Выгода $66 в год" }
+        ],
+        "RUB": [
+          { "id": "unlimited-year", "period": "year", "price": 39900, "saving": "Выгода 2 900 ₽ в год" }
+        ]
+      }
+    }
+  ]
+}

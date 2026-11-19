@@ -1,0 +1,26 @@
+{
+  "_source": "thebell.io главная, 2026-11-19. Фон для макета: структура линий как на сайте.",
+  "lines": [
+    { "basis": 25, "widgets": [
+      { "type": "news", "title": "Акции Anthropic открылись на 34% выше цены IPO. Компанию оценили примерно в $2 трлн", "meta": "Три часа назад" },
+      { "type": "news", "title": "Генпрокуратура предупредила владельца Wikipedia о нежелательном статусе", "meta": "Пять часов назад" },
+      { "type": "news", "title": "Бывшего первого замминистра обороны Руслана Цаликова приговорили к 10 годам колонии за хищение 6,6 млрд рублей", "meta": "Шесть часов назад" },
+      { "type": "news", "title": "Путин пообещал эскалацию после удара по Крымскому мосту", "meta": "Восемь часов назад" }
+    ]},
+    { "basis": 50, "widgets": [
+      { "type": "article", "rubric": "Вечерняя рассылка", "title": "Как прошел рекордный дебют Anthropic, Европу зовут на переговоры и сколько Japan Tobacco потеряла в России", "image": "https://thebell.io/storage_v2/images/92c/425/92c42549-595c-49b3-a2f4-e4ce75ae2826_632_300.webp" },
+      { "type": "article", "rubric": "Истории", "title": "Компания на $1,4 трлн: как Anthropic хотела притормозить гонку ИИ, но вырвалась в ней вперед", "image": "https://thebell.io/storage_v2/images/007/6ba/0076badb-bb9c-4c50-8fc7-8efbd0a1f49b_632_300.webp" }
+    ]},
+    { "basis": 33, "widgets": [
+      { "type": "article", "rubric": "The Bell.Invest", "title": "Сейчас или никогда. Как заработать на волне мегасделок", "image": "https://thebell.io/storage_v2/images/c58/4ec/c584ec5e-f984-4a18-8004-d85838cae8c0_632_300.webp" },
+      { "type": "article", "rubric": "The Bell.Tech", "title": "Чипы, шпионы и контрабанда: все, что нужно знать об увольнении главы Nvidia Дженсена Хуанга", "image": "https://thebell.io/storage_v2/images/e64/758/e647585a-6079-4524-a373-6e7a8e63bd1e_632_300.webp" },
+      { "type": "article", "rubric": "Новости", "title": "Anthropic обошел SpaceX по сумме IPO", "image": "https://thebell.io/storage_v2/images/e5a/1eb/e5a1eb1e-7822-4371-b9d1-13b30683a09c_632_300.webp" }
+    ]},
+    { "basis": 25, "widgets": [
+      { "type": "news", "title": "Путин, Трамп и Си Цзиньпин приняли «Декларацию о мире». Об Украине в ней ничего нет", "meta": "Девять часов назад" },
+      { "type": "news", "title": "Мир может обойтись без Ормузского пролива – МЭА", "meta": "11 часов назад" },
+      { "type": "news", "title": "Импорт бензина стал постоянной составляющей топливного баланса России — FT", "meta": "18 ноября 2026" },
+      { "type": "news", "title": "IPO Anthropic перекроит рейтинг миллиардеров Кремниевой долины", "meta": "18 ноября 2026" }
+    ]}
+  ]
+}

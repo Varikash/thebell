@@ -1,0 +1,50 @@
+{
+  "_source": "the-chat.io, chat.osetinskaya.io — собрано 2026-11-19. Время в источнике в CET; длительность известна только у Пешкина (90 мин), для остальных принята такой же.",
+  "_productIdNote": "ДОПУЩЕНИЕ: на сайте все вебинары относятся к The Chat (не входит в 4 продукта). productId назначен по теме и в админке задаётся редакцией.",
+  "webinars": [
+    {
+      "id": "dashevsky",
+      "title": "Портфель инвестора в 2026–2027 годах",
+      "speaker": "Стивен Дашевский",
+      "speakerRole": "исполнительный директор D&P Advisors, портфельный менеджер",
+      "startsAt": "2026-09-14T18:00:00+02:00",
+      "endsAt": "2026-09-14T19:30:00+02:00",
+      "image": "https://static.tildacdn.net/tild6563-3763-4436-a333-383366666231/photo.jpg",
+      "url": "https://chat.osetinskaya.io/live/dashevsky",
+      "productId": "invest"
+    },
+    {
+      "id": "libermans",
+      "title": "Будущее AI: мы создаем бога?",
+      "speaker": "Даниил и Давид Либерманы",
+      "speakerRole": "предприниматели, инвесторы, визионеры",
+      "startsAt": "2026-10-14T20:00:00+02:00",
+      "endsAt": "2026-10-14T21:30:00+02:00",
+      "image": "https://static.tildacdn.net/tild3164-3333-4662-a132-313933343763/photo.jpg",
+      "url": "https://chat.osetinskaya.io/live/libermans",
+      "productId": "tech"
+    },
+    {
+      "id": "peshkin",
+      "title": "Как победить старение: какие ответы есть у науки и что мы можем сделать сами",
+      "speaker": "Леонид Пешкин",
+      "speakerRole": "биолог и ученый из Гарвардского университета",
+      "startsAt": "2026-11-18T18:00:00+01:00",
+      "endsAt": "2026-11-18T19:30:00+01:00",
+      "image": "https://static.tildacdn.net/tila3933-6366-4165-b734-613163376165/image_2026-11-03_16-.png",
+      "url": "https://chat.osetinskaya.io/peshkin",
+      "productId": "unlimited"
+    },
+    {
+      "id": "arkhipova",
+      "title": "Великие антропологические открытия, изменившие мир",
+      "speaker": "Александра Архипова",
+      "speakerRole": "социальный антрополог, фольклористка",
+      "startsAt": "2026-12-03T19:00:00+01:00",
+      "endsAt": "2026-12-03T20:30:00+01:00",
+      "image": "https://static.tildacdn.net/tild6132-6432-4339-a332-386336633033/photo.jpg",
+      "url": null,
+      "productId": "news"
+    }
+  ]
+}
