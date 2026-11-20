@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProductShowcase } from '../product-showcase/product-showcase';
+import { WebinarsBlock } from '../webinars/webinars-block';
 import { HomeData } from './home-data';
 import { ArticleWidget } from './widgets/article-widget';
-import { BlockPlaceholder } from './widgets/block-placeholder';
 import { NewsWidget } from './widgets/news-widget';
 
 /**
@@ -12,7 +12,7 @@ import { NewsWidget } from './widgets/news-widget';
 @Component({
   selector: 'tb-home-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NewsWidget, ArticleWidget, BlockPlaceholder, ProductShowcase],
+  imports: [NewsWidget, ArticleWidget, ProductShowcase, WebinarsBlock],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
