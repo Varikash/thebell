@@ -1,0 +1,36 @@
+@if (cards().length) {
+  <section class="block" aria-labelledby="webinars-title">
+    <header class="head">
+      <h2 class="heading" id="webinars-title">Вебинары The Bell</h2>
+      <span class="hint">Время указано в вашем часовом поясе</span>
+    </header>
+
+    <ul class="list">
+      @for (card of cards(); track card.id) {
+        <li class="card" [class.past]="card.status === 'past'">
+          <div class="photo">
+            <img [src]="card.image" [alt]="card.speaker" loading="lazy" />
+            <span class="badge">{{ card.badge }}</span>
+          </div>
+
+          <div class="body">
+            <span class="tb-meta">{{ card.dateLabel }}</span>
+            <h3 class="title">{{ card.title }}</h3>
+            <p class="speaker">
+              <strong>{{ card.speaker }}</strong>, {{ card.speakerRole }}
+            </p>
+          </div>
+
+          <div class="footer">
+            @if (card.productName) {
+              <span class="product">Входит в {{ card.productName }}</span>
+            }
+            <button class="cta" type="button" (click)="subscribe(card.productId)">
+              {{ card.ctaLabel }}
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  </section>
+}
