@@ -6,9 +6,6 @@ import { SiteHeader } from './layout/site-header';
   selector: 'tb-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SiteHeader, HomePage],
-  template: `
-    <tb-site-header />
-    <tb-home-page />
-  `,
+  templateUrl: './app.html',
 })
 export class App {}

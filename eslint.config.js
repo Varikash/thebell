@@ -26,6 +26,11 @@ module.exports = defineConfig([
         { type: 'element', prefix: 'tb', style: 'kebab-case' },
       ],
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+      // Шаблоны и стили только в отдельных .html и .scss файлах.
+      '@angular-eslint/component-max-inline-declarations': [
+        'error',
+        { template: 0, styles: 0, animations: 0 },
+      ],
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       eqeqeq: ['error', 'always'],
       'no-console': ['warn', { allow: ['warn', 'error'] }],

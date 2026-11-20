@@ -1,0 +1,31 @@
+@let layout = homeData.layout();
+<main class="tb-container lines">
+  @if (layout) {
+    @for (line of layout.lines; track line.id) {
+      <section [class]="'line basis-' + line.basis">
+        @for (widget of line.widgets; track widget.id) {
+          <div class="line-widget">
+            @switch (widget.type) {
+              @case ('news') {
+                <tb-news-widget [widget]="widget" />
+              }
+              @case ('article') {
+                <tb-article-widget [widget]="widget" />
+              }
+              @case ('product-showcase') {
+                <tb-product-showcase [widget]="widget" />
+              }
+              @case ('webinars') {
+                <tb-block-placeholder label="Вебинары" [type]="widget.type" />
+              }
+            }
+          </div>
+        }
+      </section>
+    }
+  } @else if (homeData.error()) {
+    <p class="status">Не удалось загрузить главную. Обновите страницу.</p>
+  } @else {
+    <p class="status">Загружаем главную…</p>
+  }
+</main>

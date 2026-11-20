@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="tb-container bar">
+    <button class="icon burger" type="button" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="logo" href="#">THE BELL.</a>
+    <nav class="nav" aria-label="Рубрики">
+      @for (item of nav; track item) {
+        <a href="#">{{ item }}</a>
+      }
+    </nav>
+    <a class="tb-button subscribe" href="#">Подписаться</a>
+    <button class="icon user" type="button" aria-label="Войти">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+        <path
+          d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+        />
+      </svg>
+    </button>
+  </div>
+  <div class="tb-container mobile-subscribe">
+    <a class="tb-button" href="#">Подписаться</a>
+  </div>
+</header>
