@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ProductShowcase } from '../product-showcase/product-showcase';
 import { HomeData } from './home-data';
 import { ArticleWidget } from './widgets/article-widget';
 import { BlockPlaceholder } from './widgets/block-placeholder';
@@ -11,7 +12,7 @@ import { NewsWidget } from './widgets/news-widget';
 @Component({
   selector: 'tb-home-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NewsWidget, ArticleWidget, BlockPlaceholder],
+  imports: [NewsWidget, ArticleWidget, BlockPlaceholder, ProductShowcase],
   template: `
     @let layout = homeData.layout();
     <main class="tb-container lines">
@@ -28,7 +29,7 @@ import { NewsWidget } from './widgets/news-widget';
                     <tb-article-widget [widget]="widget" />
                   }
                   @case ('product-showcase') {
-                    <tb-block-placeholder label="Витрина продуктов" [type]="widget.type" />
+                    <tb-product-showcase [widget]="widget" />
                   }
                   @case ('webinars') {
                     <tb-block-placeholder label="Вебинары" [type]="widget.type" />
