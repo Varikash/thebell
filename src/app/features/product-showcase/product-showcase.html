@@ -1,0 +1,22 @@
+@if (product(); as product) {
+  <article class="card">
+    <span class="tb-chip">Продукт The Bell</span>
+
+    <div class="body">
+      <h2 class="name">{{ product.name }}</h2>
+      <p class="tagline">{{ product.tagline }}</p>
+      <ul class="features">
+        @for (feature of features(); track feature) {
+          <li>{{ feature }}</li>
+        }
+      </ul>
+    </div>
+
+    <div class="footer">
+      <span class="price">{{ price() }}</span>
+      <button class="cta" type="button" (click)="subscribe(product.id)">
+        {{ product.trial ? 'Попробовать за $1' : 'Подписаться' }}
+      </button>
+    </div>
+  </article>
+}
