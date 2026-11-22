@@ -32,7 +32,3 @@ const MONTHS: Record<Plan['period'], number> = { month: 1, halfyear: 6, year: 12
 export function lowestMonthlyPrice(product: Product): number {
   return Math.min(...product.plans.USD.map((plan) => plan.price / MONTHS[plan.period]));
 }
-
-export function formatUsd(value: number): string {
-  return `$${value.toLocaleString('ru-RU', { maximumFractionDigits: 2 })}`;
-}

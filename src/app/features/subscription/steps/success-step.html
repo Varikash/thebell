@@ -1,0 +1,19 @@
+@if (flow.selectedPlan(); as plan) {
+  <div class="mark" aria-hidden="true">✓</div>
+  <h3 class="heading">Подписка оформлена</h3>
+
+  <p>
+    {{ flow.product()?.name }}, {{ plan.title.toLowerCase() }} тариф —
+    {{ plan.price | price: plan.currency }} {{ plan.periodLabel }}.
+  </p>
+  <p>
+    Чек и доступ отправили на <strong>{{ flow.email() }}</strong>.
+  </p>
+  @if (flow.source() === 'webinar') {
+    <p>Ссылка на вебинар придёт на эту же почту перед началом.</p>
+  } @else {
+    <p>Первое письмо придёт с ближайшим выпуском.</p>
+  }
+
+  <button class="tb-button back" type="button" (click)="flow.close()">Вернуться к чтению</button>
+}

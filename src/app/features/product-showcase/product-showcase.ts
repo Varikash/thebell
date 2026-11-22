@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { today } from '../../core/today';
 import { ProductShowcaseConfig } from '../home/home.model';
 import { SubscriptionFlow } from '../subscription/subscription-flow';
-import { formatUsd, lowestMonthlyPrice, pickProductOfDay } from './product-rotation';
+import { formatPrice } from '../../core/format-price';
+import { lowestMonthlyPrice, pickProductOfDay } from './product-rotation';
 import { ProductsData } from './products-data';
 
 /** Витрина: один продукт The Bell в ротации, смена раз в сутки. */
@@ -29,10 +30,10 @@ export class ProductShowcase {
     if (!product) return '';
     return product.trial
       ? '$1 за первый месяц'
-      : `от ${formatUsd(lowestMonthlyPrice(product))}/мес`;
+      : `от ${formatPrice(lowestMonthlyPrice(product), 'USD')}/мес`;
   });
 
   protected subscribe(productId: string): void {
-    this.subscription.open(productId);
+    this.subscription.open(productId, 'showcase');
   }
 }
