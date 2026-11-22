@@ -29,6 +29,6 @@ export class WebinarsBlock {
   });
 
   protected subscribe(productId: string): void {
-    this.subscription.open(productId);
+    this.subscription.open(productId, 'webinar');
   }
 }

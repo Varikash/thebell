@@ -1,0 +1,47 @@
+<div class="overlay">
+  <div class="backdrop" (click)="flow.close()" aria-hidden="true"></div>
+
+  <div
+    #dialog
+    class="dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="subscription-title"
+    tabindex="-1"
+  >
+    <header class="head">
+      @if (flow.step() === 'payment') {
+        <button
+          class="icon"
+          type="button"
+          aria-label="Назад к тарифам"
+          (click)="flow.backToPlans()"
+        >
+          ←
+        </button>
+      }
+      <h2 class="title" id="subscription-title">{{ title() }}</h2>
+      <button class="icon close" type="button" aria-label="Закрыть" (click)="flow.close()">
+        ✕
+      </button>
+    </header>
+
+    @if (flow.product()) {
+      @let step = flow.step();
+      @switch (step) {
+        @case ('plans') {
+          <tb-plans-step />
+        }
+        @case ('payment') {
+          <tb-payment-step />
+        }
+        @case ('success') {
+          <tb-success-step />
+        }
+        @default never;
+      }
+    } @else {
+      <p class="loading">Загружаем тарифы…</p>
+    }
+  </div>
+</div>

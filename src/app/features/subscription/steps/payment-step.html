@@ -1,0 +1,95 @@
+@if (flow.selectedPlan(); as plan) {
+  <p class="summary">
+    {{ flow.product()?.name }}, {{ plan.title.toLowerCase() }} тариф —
+    <strong>{{ plan.price | price: plan.currency }}</strong> {{ plan.periodLabel }}
+  </p>
+
+  <form class="form" (ngSubmit)="pay()">
+    <label class="field">
+      <span>Email</span>
+      <input
+        type="email"
+        name="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        required
+        [(ngModel)]="email"
+      />
+      <small>На него придут чек и доступ</small>
+    </label>
+
+    <label class="field">
+      <span>Номер карты</span>
+      <input
+        type="text"
+        name="cardNumber"
+        inputmode="numeric"
+        autocomplete="cc-number"
+        placeholder="0000 0000 0000 0000"
+        maxlength="19"
+        required
+        #cardInput
+        [value]="cardNumber()"
+        (input)="onCardInput(cardInput)"
+      />
+    </label>
+
+    <div class="row">
+      <label class="field">
+        <span>Срок</span>
+        <input
+          type="text"
+          name="expiry"
+          inputmode="numeric"
+          autocomplete="cc-exp"
+          placeholder="ММ/ГГ"
+          maxlength="5"
+          required
+          #expiryInput
+          [value]="expiry()"
+          (input)="onExpiryInput(expiryInput)"
+        />
+      </label>
+      <label class="field">
+        <span>CVC</span>
+        <input
+          type="password"
+          name="cvc"
+          inputmode="numeric"
+          autocomplete="cc-csc"
+          placeholder="123"
+          maxlength="3"
+          required
+          #cvcInput
+          [value]="cvc()"
+          (input)="onCvcInput(cvcInput)"
+        />
+      </label>
+    </div>
+
+    <label class="agree">
+      <input type="checkbox" name="agreed" [(ngModel)]="agreed" />
+      <span
+        >Принимаю условия оферты. Подписка продлевается автоматически, отменить можно в любой
+        момент.</span
+      >
+    </label>
+
+    @if (status() === 'error') {
+      <p class="error" role="alert">{{ errorMessage() }}</p>
+    }
+
+    <button class="tb-button pay" type="submit" [disabled]="!isValid() || status() === 'paying'">
+      @if (status() === 'paying') {
+        Оплачиваем…
+      } @else {
+        Оплатить {{ plan.price | price: plan.currency }}
+      }
+    </button>
+
+    <p class="demo">
+      Демо-оплата: <code>4242 4242 4242 4242</code> — успех, <code>4000 0000 0000 0002</code> —
+      отказ банка. Срок и CVC любые.
+    </p>
+  </form>
+}
