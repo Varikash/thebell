@@ -1,0 +1,106 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tagline {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.currency {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px;
+  border-radius: var(--tb-radius);
+  background: var(--tb-grey-bg);
+}
+
+.currency button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font: 600 13px/1 var(--tb-font);
+  cursor: pointer;
+}
+
+.currency button.active {
+  background: var(--tb-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.plans {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.plan {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 2px solid var(--tb-grey-line);
+  border-radius: var(--tb-radius);
+  cursor: pointer;
+}
+
+.plan.selected {
+  border-color: var(--tb-red);
+}
+
+.plan input {
+  accent-color: var(--tb-red);
+}
+
+.plan-title {
+  font-weight: 600;
+}
+
+.plan-price {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.plan-price s {
+  margin-right: 4px;
+  color: var(--tb-grey-text);
+  font-weight: 400;
+}
+
+.plan-price small {
+  color: var(--tb-grey-text);
+  font-weight: 400;
+}
+
+.plan-note {
+  grid-column: 2 / -1;
+  color: var(--tb-grey-text);
+  font-size: 13px;
+}
+
+.next {
+  height: 48px;
+  font-size: 16px;
+}
+
+.upsell {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tb-black);
+  font: 14px/1.4 var(--tb-font);
+  text-align: left;
+  cursor: pointer;
+}
+
+.upsell:hover {
+  color: var(--tb-red);
+}

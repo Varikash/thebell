@@ -1,0 +1,54 @@
+@if (flow.product(); as product) {
+  <p class="tagline">{{ product.tagline }}</p>
+
+  <div class="currency" role="group" aria-label="Валюта">
+    @for (currency of currencies; track currency.value) {
+      <button
+        type="button"
+        [class.active]="flow.currency() === currency.value"
+        [attr.aria-pressed]="flow.currency() === currency.value"
+        (click)="flow.setCurrency(currency.value)"
+      >
+        {{ currency.label }}
+      </button>
+    }
+  </div>
+
+  <fieldset class="plans">
+    <legend class="visually-hidden">Тариф</legend>
+    @for (plan of flow.plans(); track plan.id) {
+      <label class="plan" [class.selected]="plan.id === flow.selectedPlan()?.id">
+        <input
+          type="radio"
+          name="plan"
+          [value]="plan.id"
+          [checked]="plan.id === flow.selectedPlan()?.id"
+          (change)="flow.selectPlan(plan.id)"
+        />
+        <span class="plan-title">{{ plan.title }}</span>
+        <span class="plan-price">
+          @if (plan.oldPrice) {
+            <s>{{ plan.oldPrice | price: plan.currency }}</s>
+          }
+          {{ plan.price | price: plan.currency }}
+          <small>{{ plan.periodLabel }}</small>
+        </span>
+        @if (plan.note) {
+          <span class="plan-note">{{ plan.note }}</span>
+        }
+      </label>
+    }
+  </fieldset>
+
+  @if (flow.selectedPlan(); as plan) {
+    <button class="tb-button next" type="button" (click)="flow.goToPayment()">
+      Продолжить — {{ plan.price | price: plan.currency }}
+    </button>
+  }
+
+  @if (flow.unlimitedOffer(); as offer) {
+    <button class="upsell" type="button" (click)="flow.switchProduct('unlimited')">
+      Всё это и ещё 2 продукта в <strong>Unlimited</strong> — {{ offer }} →
+    </button>
+  }
+}

@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HomePageComponent } from './home/home-page';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { HomePage } from './features/home/home-page';
+import { SubscriptionFlow } from './features/subscription/subscription-flow';
+import { SubscriptionModal } from './features/subscription/subscription-modal';
 import { SiteHeader } from './layout/site-header';
 
 @Component({
-  selector: 'app-root',
+  selector: 'tb-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SiteHeader, HomePageComponent],
-  template: `
-    <tb-site-header />
-    <tb-home-page />
-  `,
+  imports: [SiteHeader, HomePage, SubscriptionModal],
+  templateUrl: './app.html',
 })
-export class App {}
+export class App {
+  protected readonly subscription = inject(SubscriptionFlow);
+}
