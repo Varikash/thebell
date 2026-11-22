@@ -1,41 +1,91 @@
-# Thebell
+# The Bell: витрина продуктов и вебинары на главной
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.30.
+Тестовое задание на позицию frontend-разработчика.
+На копию главной thebell.io добавлены два новых блока и путь оформления подписки.
 
-## Development server
+**Демо:** <https://thebell-two.vercel.app/>
 
-To start a local development server, run:
+Angular 21 (standalone, signals, zoneless), без SSR и роутинга.
+
+## Что посмотреть
+
+- **Витрина продуктов.** Вторая линия, справа от статьи: один из четырёх продуктов The Bell, меняется раз в сутки.
+- **Вебинары.** Линия на всю ширину после третьей: сначала предстоящие, за ними записи прошедших.
+- **Подписка.** Любая кнопка в блоках открывает модалку: тарифы → оплата → успех.
+
+Параметры для проверки:
+
+| Что                                                         | Как                                                    |
+| ----------------------------------------------------------- | ------------------------------------------------------ |
+| Другой день: меняется продукт в витрине и статусы вебинаров | `?today=2026-12-05`                                    |
+| Открыть тарифы ссылкой, например из рассылки                | `?subscribe=tech` или `?subscribe=tech&plan=tech-year` |
+| Успешная оплата                                             | карта `4242 4242 4242 4242`, срок и CVC любые          |
+| Отказ банка с повтором                                      | карта `4000 0000 0000 0002`                            |
+
+В `subscribe` передаётся id продукта, в `plan` — id тарифа (необязательно):
+
+- продукты: `news`, `invest`, `tech`, `unlimited`;
+- тарифы: `<продукт>-trial`, `<продукт>-month`, `<продукт>-halfyear`, `<продукт>-year`. Пробный тариф есть у `invest` и `tech`, полугодовой — у всех, кроме `tech`. Тарифы повторяют те, что сейчас на сайте The Bell, поэтому у продуктов разный набор.
+
+Если продукта с таким id нет, модалка остаётся на «Загружаем тарифы…»: проверки ссылки в MVP нет.
+
+## Как блоки встраиваются в главную
+
+Главная thebell.io собирается в конструкторе из линий (`four_25`, `two_50`, `three_33`, `one_big`).
+В каждой линии стоят виджеты шириной 25, 33, 50 или 100%.
+Здесь главная загружается **живьём из их GraphQL API**: раскладка из `getLayoutThemesByRoute`, посты из `getLayoutData`.
+
+Наши блоки — **два новых типа виджетов** для того же конструктора, а не баннеры поверх страницы:
+
+- **Витрина** (`product-showcase`) занимает слот 50% в линии рядом со статьёй. На мобильном она на всю ширину.
+- **Вебинары** (`webinars`) — своя линия 100%. На мобильном карточки листаются горизонтально.
+
+В живой раскладке этих блоков пока нет, поэтому их место задаёт `src/app/features/home/home-blocks.config.ts`.
+Это то, что редакция выставила бы в админке.
+
+**Что настраивает редакция:**
+
+- **Витрина.** Режим ротации или закрепления (`mode`), закреплённый продукт (`pinnedProductId`) и продукты, исключённые из ротации (`excludedProductIds`).
+- **Вебинары.** Сколько карточек показывать (`limit`) и показывать ли прошедшие (`showPast`). У каждого вебинара редакция выбирает, подписку на какой продукт он продаёт.
+
+**Как блок решает, что показать:**
+
+- **Витрина.** Если продукт закреплён, показываем его. Иначе номер дня по Москве делится на число продуктов в ротации, остаток определяет продукт.
+  Выбор детерминированный: в один день у всех читателей один и тот же продукт, в полночь по Москве он меняется. Бэкенд для этого не нужен.
+  Если есть пробный период, кнопка «Попробовать за $1». Если нет — «от $X/мес» и «Подписаться».
+- **Вебинары.** Сначала предстоящие, ближайший первым, с кнопкой «Зарегистрироваться». За ними прошедшие, свежие первыми, с кнопкой «Смотреть запись». Всего не больше `limit`.
+  Время показывается в часовом поясе читателя.
+- **Модалка.** По умолчанию выбран пробный тариф, а если его нет — годовой. Цены в USD с переключателем на RUB, выбор запоминается.
+  Для продуктов кроме Unlimited есть строка «Всё это и ещё 2 продукта в Unlimited».
+
+## Данные
+
+- **Главная** — живой API thebell.io. Если он недоступен, показывается ошибка: моков нет.
+- **Продукты и вебинары** у The Bell лежат на Tilda и the-chat.io, API у них нет.
+  Поэтому это каталог в `public/api/products.json` и `public/api/webinars.json`, собранный с сайтов вручную.
+  Когда появится API, поменяется только сервис данных (`*-data.ts`), компоненты не меняются.
+- **Оплата** идёт через интерфейс `PaymentGateway`. В демо стоит мок.
+  На проде вместо него подключается реальный провайдер или биллинг The Bell — одна строка в `app.config.ts`.
+
+## Запуск
+
+Нужен Node 20.19 или новее.
 
 ```bash
-ng serve
+npm install
+npm start          # http://localhost:4200
+npm run check      # lint, Prettier и сборка
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Структура
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+src/app/
+  core/api/                    запросы к GraphQL API thebell.io
+  features/home/               главная: раскладка, виджеты, конфиг наших блоков
+  features/product-showcase/   витрина и логика ротации
+  features/webinars/           блок вебинаров
+  features/subscription/       модалка: тарифы, оплата, успех
+  layout/, shared/             шапка и общие мелочи
+public/api/                    каталог продуктов и вебинаров
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
