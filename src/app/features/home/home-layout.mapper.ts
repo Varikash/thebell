@@ -43,7 +43,8 @@ export function toHomeLayout(theme: ApiLayoutTheme, posts: ApiPost[]): HomeLayou
     });
 
     if (widgets.length) {
-      lines.push({ id: apiLine.id, basis, widgets });
+      // layoutItem.id — номер типа линии (four_25 всегда "4"), поэтому добавляем порядковый номер.
+      lines.push({ id: `${lineIndex}-${apiLine.id}`, basis, widgets });
     }
     if (lineIndex === webinars.afterLineIndex) {
       lines.push({ id: 'webinars-line', basis: 100, widgets: [webinars.widget] });
